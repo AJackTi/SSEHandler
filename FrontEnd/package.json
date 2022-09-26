@@ -1,0 +1,9 @@
+{
+  "name": "SSE",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "eventsource": "^2.0.2"
+  }
+}

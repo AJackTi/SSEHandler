@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Getting server updates</h1>
+<div id="result"></div>
+
+<script>
+    if(typeof(EventSource) !== "undefined") {
+        var source = new EventSource("http://localhost:8081/api/v1/auth", { withCredentials: false })
+
+        source.addEventListener("message", (event) => {
+            console.log("AddEventListener Called:")
+            console.log(JSON.stringify(event));
+        })
+
+        source.onerror = (err) => {
+            console.error("EventSource failed:", err);
+        };
+
+        source.onmessage = function(event) {
+            console.log(event);
+            document.getElementById("result").innerHTML += event.data + "<br>";
+        };
+    } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support server-sent events...";
+    }
+</script>
+
+</body>
+</html>
